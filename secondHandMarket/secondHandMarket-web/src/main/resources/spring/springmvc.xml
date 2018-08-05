@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<context:component-scan base-package="com.secondHandMarket.controller" />
+	<context:component-scan base-package="com.secondHandMarket.config" />
+	
+	<mvc:annotation-driven />
+	
+	<!-- 前后缀 -->
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+<!-- 		<property name="prefix" value="/WEB-INF/jsp/" />
+		<property name="suffix" value=".jsp" /> -->
+	</bean>
+	
+	<!-- 不拦截静态资源 -->
+	<!-- <mvc:resources location="/WEB-INF/static/css/" mapping="/static/css/**"/>
+	<mvc:resources location="/WEB-INF/static/js/" mapping="/static/js/**"/>
+	<mvc:resources location="/WEB-INF/static/img/" mapping="/static/img/**"/>
+	<mvc:resources location="/WEB-INF/static/fonts/" mapping="/static/fonts/**"/> -->
+	<mvc:resources location="/static/css/" mapping="/static/css/**"/>
+	<mvc:resources location="/static/js/" mapping="/static/js/**"/>
+	<mvc:resources location="/static/img/" mapping="/static/img/**"/>
+	<mvc:resources location="/static/fonts/" mapping="/static/fonts/**"/>
+	<mvc:resources mapping="swagger-ui.html" location="classpath:/META-INF/resources/" />
+	<mvc:resources mapping="/webjars/**" location="classpath:/META-INF/resources/webjars/" />
+	
+	<!-- 文件上传相关配置 -->
+	<bean id="multipartResolver"
+	    class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+	    <property name="defaultEncoding" value="UTF-8"></property>
+	    <property name="maxUploadSize" value="10240000"></property>
+	</bean>
+	
+</beans>
